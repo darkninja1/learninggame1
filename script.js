@@ -44,7 +44,7 @@ var gameTypes = [
         document.body.style.backgroundSize = 'cover';
         results();
       }, 30000);
-    }
+    } 
   },
   {
     "Name": "elsaMedium",
