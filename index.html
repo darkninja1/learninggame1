@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Kindergarten</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id='choose'></div>
+<iframe src='' id='videoPlayer' frameborder="0" allow="autoplay"></iframe>
+<div id='gameBoard'>
+<div id='qnum' class='qnum'></div>
+<div id='question' class='question'></div>
+<hr class='mathline'>
+<br>
+<form id='form' class='form'>
+<input id='answer' autocomplete="off" class='answer' placeholder='Type your answer here, then press enter.' required/>
+<input type="submit" value="Submit" id="submitButton" />
+</form>
+<div class='bad' id='bad'>
+  <span>X</span>
+</div>
+<div class='good' id='good'>
+  <span>✓</span>
+</div>
+</div>
+<div class='background' id='bg1' onclick='location.href="/";'><h1 style='margin-left:20px;color:white;'>Score</h1><div class='bar-back'><div id='myBar' class='bar'></div></div><br><p id='corr'>Correct: </p><p id='incorr'>Incorrect: </p></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
