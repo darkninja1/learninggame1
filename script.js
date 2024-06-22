@@ -1,7 +1,7 @@
-let gitTest = "/learninggame1/";
+let gitTest = "/learninggame1/"; /* /learninggame1/ */
 var correct = 0;
 var incorrect = 0;
-var question = 1;
+var question = 0;
 var questionCount = 10;
 var gameType = null;
 let elsaVideos = ['https://www.youtube.com/embed/gIOyB9ZXn8s','https://www.youtube.com/embed/L0MK7qz13bU'];
@@ -130,7 +130,7 @@ function start() {
   else {
     multi();
     document.getElementById('qnum').innerHTML =  question+ " of "+questionCount;
-    document.getElementById('qnum2').innerHTML =  (questionCount-question)+1+ " left";
+    document.getElementById('qnum2').innerHTML =  (questionCount-question)+ " left";
   }
 }
 
