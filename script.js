@@ -1,15 +1,18 @@
+let gitTest = "/learninggame1/";
 var correct = 0;
 var incorrect = 0;
 var question = 1;
 var questionCount = 10;
 var gameType = null;
 let elsaVideos = ['https://www.youtube.com/embed/gIOyB9ZXn8s','https://www.youtube.com/embed/L0MK7qz13bU'];
+let videoLengths = [209,243];
 var gameNames = [];
 var gameTypes = [
   {
-    "Name": "bear",
-    "Img": "bear.png",
+    "Name": "Bear Game",
+    "Img": "bear3.png",
     "Questions": 10,
+    "UpTo":11,
     "Code": function() {
       document.body.style.backgroundColor = 'white';
       document.body.style.background = "url('bear2.gif') no-repeat center 0%";
@@ -30,9 +33,10 @@ var gameTypes = [
     }
   },
   {
-    "Name": "elsaEasy",
-    "Img": "bear.png",
+    "Name": "Frozen Easy",
+    "Img": "elsa1.jpg",
     "Questions": 10,
+    "UpTo":11,
     "Code": function() {
       var videoPlayer = document.getElementById('videoPlayer');
       videoPlayer.style.display = 'block';
@@ -47,37 +51,41 @@ var gameTypes = [
     }  
   },
   {
-    "Name": "elsaMedium",
-    "Img": "bear.png",
-    "Questions": 20,
+    "Name": "Frozen Medium",
+    "Img": "elsa2.jpg",
+    "Questions": 10,
+    "UpTo":51,
     "Code": function() {
       var videoPlayer = document.getElementById('videoPlayer');
       videoPlayer.style.display = 'block';
-      videoPlayer.src = elsaVideos[Math.floor(Math.random() * elsaVideos.length)] + "?rel=0&version=3&autoplay=1&controls=0&showinfo=0&loop=1";
+      let thevid = Math.floor(Math.random() * elsaVideos.length);
+      videoPlayer.src = elsaVideos[thevid] + "?rel=0&version=3&autoplay=1&controls=0&showinfo=0&loop=1";
       setTimeout(function() {
         videoPlayer.src = '';
         videoPlayer.style.display = 'none';
         document.body.style.background = "url('888.jpg') no-repeat fixed center center";
         document.body.style.backgroundSize = 'cover';
         results();
-      }, 60000);
+      }, Math.round((videoLengths[thevid]*1000)/2));
     }
   },
   {
-    "Name": "elsaHard",
-    "Img": "bear.png",
-    "Questions": 30,
+    "Name": "Frozen Hard",
+    "Img": "elsa3.jpg",
+    "Questions": 10,
+    "UpTo":101,
     "Code": function() {
       var videoPlayer = document.getElementById('videoPlayer');
       videoPlayer.style.display = 'block';
-      videoPlayer.src = elsaVideos[Math.floor(Math.random() * elsaVideos.length)] + "?rel=0&version=3&autoplay=1&controls=0&showinfo=0&loop=1";
+      let thevid = Math.floor(Math.random() * elsaVideos.length);
+      videoPlayer.src = elsaVideos[thevid] + "?rel=0&version=3&autoplay=1&controls=0&showinfo=0&loop=1";
       setTimeout(function() {
         videoPlayer.src = '';
         videoPlayer.style.display = 'none';
         document.body.style.background = "url('888.jpg') no-repeat fixed center center";
         document.body.style.backgroundSize = 'cover';
         results();
-      }, 90000);
+      }, (videoLengths[thevid]*1000));
     }
   }
 ];
@@ -89,10 +97,14 @@ const chooseDiv = document.getElementById("choose");
 for (const type of gameTypes) {
   const button = document.createElement("button");
   button.innerText = type.Name;
-  button.style.backgroundImage = `url(${type.Img})`;
-  button.style.padding = "10px";
+  button.style.background = `url(${gitTest+type.Img}) center center no-repeat`;
+  button.style.backgroundSize = "cover";
+  button.style.width = "200px";
+  button.style.height = "200px";
+  button.style.lineHeight = "100px";
+  button.style.textAlign = "center";
   button.style.border = "none";
-  button.style.borderRadius = "5px";
+  button.style.borderRadius = "100%";
   button.style.margin = "5px";
   button.style.color = "#fff";
   button.style.fontWeight = "bold";
@@ -112,18 +124,19 @@ function startGame(gameTy) {
 }
 function start() {
  document.getElementById("answer").focus();
-  if (question > questionCount) {
+  if (question >= questionCount) {
     win();
   }
   else {
     multi();
     document.getElementById('qnum').innerHTML =  question+ " of "+questionCount;
+    document.getElementById('qnum2').innerHTML =  (questionCount-question)+1+ " left";
   }
 }
 
 function multi() {
-  num1 = Math.floor(Math.random() * 11);
-  num2 = Math.floor(Math.random() * 11);
+  num1 = Math.floor(Math.random() * gameTypes[gameType].UpTo);
+  num2 = Math.floor(Math.random() * gameTypes[gameType].UpTo);
   
   document.getElementById('question').innerHTML =  num1 + " + " + num2 + " = ? ";
   document.getElementById("answer").value = null;
