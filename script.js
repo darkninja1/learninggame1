@@ -30,7 +30,7 @@ var gameTypes = [
         lol1.pause();
         lol1.remove();
         results();
-      }, 30000);
+      }, 30000*(correct/questionCount));
     }
   },
   {
@@ -48,7 +48,7 @@ var gameTypes = [
         document.body.style.background = "url('888.jpg') no-repeat fixed center center";
         document.body.style.backgroundSize = 'cover';
         results();
-      }, 30000);
+      }, 30000*(correct/questionCount));
     }  
   },
   {
@@ -67,7 +67,7 @@ var gameTypes = [
         document.body.style.background = "url('888.jpg') no-repeat fixed center center";
         document.body.style.backgroundSize = 'cover';
         results();
-      }, Math.round((videoLengths[thevid]*1000)/2));
+      }, Math.round((videoLengths[thevid]*1000*(correct/questionCount))/2));
     }
   },
   {
@@ -86,7 +86,7 @@ var gameTypes = [
         document.body.style.background = "url('888.jpg') no-repeat fixed center center";
         document.body.style.backgroundSize = 'cover';
         results();
-      }, (videoLengths[thevid]*1000));
+      }, Math.round(videoLengths[thevid]*1000*(correct/questionCount)));
     }
   }
 ];
@@ -202,10 +202,10 @@ document.getElementById('corr').innerHTML = "<ic>Correct:</ic> "+correct; docume
 function win() {
   pause();
   document.getElementById('gameBoard').style.display = "none";
-  if (((correct/questionCount)*100) >= 80) {
+  // if (((correct/questionCount)*100) >= 80) {
     gameTypes[gameType].Code();
-  }
-  else {
-    results();
-  }
+  // }
+  // else {
+    // results();
+  // }
 }
