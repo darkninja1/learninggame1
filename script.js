@@ -4,6 +4,7 @@ var incorrect = 0;
 var question = 0;
 var questionCount = 10;
 var gameType = null;
+let saved = [];
 let elsaVideos = ['https://www.youtube.com/embed/gIOyB9ZXn8s','https://www.youtube.com/embed/L0MK7qz13bU'];
 let videoLengths = [209,243];
 var gameNames = [];
@@ -171,6 +172,7 @@ document.getElementById("form").addEventListener('submit', function(e) {
 ;
     question += 1;
     incorrect += 1;
+    saved.push("Q "+question+": "+num1+" + "+num2+" = "+answer+"\n");
     start();
     
   }
@@ -192,6 +194,10 @@ function results() {
   document.getElementById('bg1').style.display = "block";
  document.getElementById('myBar').style.width = ((correct/questionCount)*100)+"%"; document.getElementById('myBar').innerHTML = ((correct/questionCount)*100)+"%";
 document.getElementById('corr').innerHTML = "<ic>Correct:</ic> "+correct; document.getElementById('incorr').innerHTML = "<ic>Incorrect:</ic> "+incorrect;
+   document.getElementById('incorr').innerHTML += "<br><ic>Questions:</ic> ";
+  for (let i = 0;i < saved.length;i++) {
+  document.getElementById('incorr').innerHTML += "<br>"+saved[i];
+  }
 }
 function win() {
   pause();
